@@ -1,0 +1,20 @@
+extends baseEmail
+
+block content
+  p Hi #{firstName},
+  p Welcome to Eunoia, we're glad to have you 🎉🙏
+  p We're all a big family here, so make sure to upload your user photo so we get to know you a bit better!
+  table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+    tbody
+      tr
+        td(align='left')
+          table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+            tbody
+              tr
+                td
+                  a(href=`#`, target='_blank') Welcome
+  p If you need any help with booking your next event, please don't hesitate to contact us!
+  hr
+  //- img(src='https://res.cloudinary.com/dbrywi5aw/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1708693945/Python_Quiz_jo25dt.jpg?_s=public-apps', alt='Your Photo', style='border-radius: 70%; width: 60px; height: 60px; margin-right: 10px;')
+  p Enjoy using our product!
+  p Ali from Eunoia 

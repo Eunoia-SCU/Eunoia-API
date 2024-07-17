@@ -1,0 +1,431 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Eunoia API Documentation
+    style.
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      header {
+        background-color: #B88CAF;
+        color: #ffff; /* Changed text color to green */
+        padding: 0.30rem 0;
+        text-align: center;
+        border-radius: 0 0 50px 50px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      header h1 {
+        margin: 0;
+        font-size: 2.1rem;
+        font-weight: bold;
+      }
+      nav {
+        margin-top: 1rem;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 1rem;
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      nav ul li a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        width: 80%;
+        margin: 2rem auto;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 2rem;
+        border-radius: 8px;
+      }
+      h2 {
+        color: #4CAF50;
+        font-size: 2rem;
+        border-bottom: 2px solid #4CAF50;
+        padding-bottom: 0.5rem;
+      }
+      h3 {
+        color: #4CAF50;
+        font-size: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      pre {
+        background: #f4f4f4;
+        padding: 1rem;
+        border-left: 5px solid #4CAF50;
+        overflow-x: auto;
+      }
+      code {
+        display: block;
+        white-space: pre-wrap;
+      }
+      footer {
+        text-align: center;
+        padding: 0.75rem 0;
+        background-color: #333;
+        color: white;
+        margin-top: 2rem;
+        border-radius: 20px 20px 0 0;
+      }
+      .method-post {
+        color: #F5B9A7;
+      }
+      .method-get {
+        color: #4CAF50;
+      }
+      .method-patch {
+        color: #FFC107;
+      }
+      .method-delete {
+        color: #F44336;
+      }
+  body
+    header
+      img(src="https://github.com/alin00r/Eunoia-Backend/blob/authentication/public/img/logo/logo.png", alt="Eunoia Logo")
+      h1 Eunoia API Documentation
+      nav
+        ul
+          li: a(href="#setup") Setup
+          li: a(href="#auth-endpoints") Authentication
+          li: a(href="#user-endpoints") User
+          li: a(href="#service-endpoints") Service
+          li: a(href="#package-endpoints") Packages
+          li: a(href="#review-endpoints") Reviews
+          li: a(href="#wishlist-endpoints") Wishlist
+          li: a(href="#request-endpoints") Requests
+
+    .container
+      section#setup
+        h2 Setting Up Your Local Environment
+        h3 Install Dependencies
+        p Run the following command to install all the required dependencies:
+        pre
+          code npm install
+
+        h3 Run The App
+        p Run the following command to start the application:
+        pre
+          code npm start
+
+      section#auth-endpoints
+        h2 Authentication Endpoints
+        h3.method-post Create New Account
+        p POST
+        pre
+          code /api/v1/auth/register
+        pre
+          code.
+            {
+              "name": "ali",                               // minlength 3, required
+              "email": "alinoorspam@gmail.com",            // required
+              "password": "Nour@@##2003",                  // minlength 8, required
+              "passwordConfirm": "Nour@@##2003",           // minlength 8, required
+              "role": "user"                               // ["user"|| "admin" || "serviceProvider"]
+            }
+        
+
+        h3.method-post Login
+        p POST
+        pre
+          code /api/v1/auth/login
+        pre
+          code.
+            {
+              "email": "alinoorspam@gmail.com",
+              "password": "123456789"
+            }
+
+        h3.method-post Request Password Reset Code
+        p POST
+        pre
+          code /api/v1/auth/forgotPassword
+        pre
+          code.
+            {
+              "email": "alinoorspam@gmail.com"
+            }
+
+        h3.method-post Verify Password Reset Code
+        p POST
+        pre
+          code /api/v1/auth/verfiyCode
+        pre
+          code.
+            {
+              "otp": "Code will arrive in your email"
+            }
+
+        h3.method-post Reset Password
+        p POST
+        pre
+          code /api/v1/auth/resetPassword
+        pre
+          code.
+            {
+              "email": "alinoorspam@gmail.com",
+              "newPassword": "123456789"
+            }
+
+        h3.method-post Logout
+        p POST
+        pre
+          code /api/v1/auth/logout
+        pre
+          code.
+            {}
+
+
+      section#user-endpoints
+        h2 User Endpoints
+        h3.method-get Get User Profile
+        p GET
+        pre
+          code /api/v1/users/me
+
+        h3.method-delete Delete User Profile
+        p DELETE
+        pre
+          code /api/v1/users/me
+
+        h3.method-patch Update User Profile
+        p PATCH
+        pre
+          code /api/v1/users/me
+        pre
+          code.
+            {
+              "name": "Ali Nour",
+              "email": "alinoorspam@gmail.com"
+            }
+
+        h3.method-patch Update User Password
+        p PATCH
+        pre
+          code /api/v1/users/updatePassword
+        pre
+          code.
+            {
+              "passwordCurrent": "Nour@@##2003",
+              "password": "123456789123456789"
+            }
+
+      section#service-endpoints
+        h2 Service Endpoints
+        h3.method-post Create Service Profile
+        p POST
+        pre
+          code /api/v1/Services
+        pre
+          code.
+            {
+              "businessName": "The diamond hall",         // minlength 3, required
+              "about": "قاعة زفاف في الإسماعيلية",       // minlength 10
+              "location": "ismailia",                     // minlength 3
+              "businessCategory": "DJs",                  // Must be one of the enum: ["Venues","Photographers","Event","Planners","DJs","Makeup","Artists","Food","Hair","Stylists","Other"]
+              "phoneNumber": "01015559496",               // Must be unique, not used before
+              "avatar": "photoProfile",                   // String
+              "image": ""                                 // [String]
+            }
+
+        h3.method-get Get All Venues
+        p GET
+        pre
+          code /api/v1/services?category=Venues
+
+        h3.method-get Get All Photographers
+        p GET
+        pre
+          code /api/v1/services?category=Photographers
+
+        h3.method-get Get All Events
+        p GET
+        pre
+          code /api/v1/services?category=Event
+
+        h3.method-get Get All Planners
+        p GET
+        pre
+          code /api/v1/services?category=Planners
+
+        h3.method-get Get All DJs
+        p GET
+        pre
+          code /api/v1/services?category=DJs
+
+        h3.method-get Get All Makeup Artists
+        p GET
+        pre
+          code /api/v1/services?category=Makeup Artists
+
+        h3.method-get Get All Food
+        p GET
+        pre
+          code /api/v1/services?category=Food
+
+        h3.method-get Get All Hair Stylists
+        p GET
+        pre
+          code /api/v1/services?category=Hair Stylists
+
+        h3.method-get Get All Other Services
+        p GET
+        pre
+          code /api/v1/services?category=Other
+
+        h3.method-get Search Services
+        p GET
+        pre
+          code /api/v1/services?keyword=searchTerm
+
+        h3.method-get Get All Services with Query Params
+        p GET
+        pre
+          code /api/v1/services
+        p Query Params: page, limit, sort, keyword, fields
+
+      section#package-endpoints
+        h2 Package Endpoints
+        h3.method-post Create Package
+        p POST
+        pre
+          code /api/v1/packages
+        pre
+          code.
+            {
+              "packageName": "Basic Package",
+              "description": "Includes basic services",
+              "price": 100,
+              "offer": 10,
+              "packagePhoto": "photoUrl",
+              "customizePackage": true
+            }
+
+        h3.method-get Get Package by ID
+        p GET
+        pre
+          code /api/v1/packages/:id
+
+        h3.method-delete Delete Package by ID
+        p DELETE
+        pre
+          code /api/v1/packages/:id
+
+        h3.method-patch Update Package by ID
+        p PATCH
+        pre
+          code /api/v1/packages/updatePackage/:id
+
+        h3.method-patch Update Package Photo
+        p PATCH
+        pre
+          code /api/v1/packages/:id
+
+      section#review-endpoints
+        h2 Review Endpoints
+        h3.method-post Create Review on Service
+        p POST
+        pre
+          code /api/v1/services/:serviceId/reviews
+        pre
+          code.
+            {
+              "ratings": 4,
+              "title": "Great service!"
+            }
+
+        h3.method-get Get Reviews on Service
+        p GET
+        pre
+          code /api/v1/services/:serviceId/reviews
+
+        h3.method-get Get Specific Review on Service
+        p GET
+        pre
+          code /api/v1/services/:serviceId/reviews/:reviewId
+
+        h3.method-patch Update Specific Review on Service
+        p PATCH
+        pre
+          code /api/v1/reviews/:id
+
+        h3.method-delete Delete Specific Review on Service
+        p DELETE
+        pre
+          code /api/v1/reviews/:id
+
+      section#wishlist-endpoints
+        h2 Wishlist Endpoints
+        h3.method-post Add Service to Wishlist
+        p POST
+        pre
+          code /api/v1/wishlist
+        pre
+          code.
+            {
+              "serviceId": "serviceId"
+            }
+
+        h3.method-delete Remove Service from Wishlist
+        p DELETE
+        pre
+          code /api/v1/wishlist/:ServiceId
+
+        h3.method-get Get Logged User Wishlist
+        p GET
+        pre
+          code /api/v1/wishlist
+
+      section#request-endpoints
+        h2 Request Endpoints
+        h3.method-post Create Request
+        p POST
+        pre
+          code /api/v1/requests/:packageId
+        pre
+          code.
+            {
+              "bookingDate": "2024-07-01",
+              "Notes": "Looking forward to this service",
+              "optionIds": ["id1", "id2"]
+            }
+
+        h3.method-get Get All Received Requests for Service Provider
+        p GET
+        pre
+          code /api/v1/requests/serviceProvider
+
+        h3.method-get Get All Sent Requests For User
+        p GET
+        pre
+          code /api/v1/requests/user
+
+        h3.method-patch Accept Request
+        p PATCH
+        pre
+          code /api/v1/requests/:id/accept-request
+
+        h3.method-patch Decline Request
+        p PATCH
+        pre
+          code /api/v1/requests/:id/decline-request
+
+    footer
+      p &copy; 2024 Eunoia API . All rights reserved.

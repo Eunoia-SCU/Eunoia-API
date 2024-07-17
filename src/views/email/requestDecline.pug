@@ -1,0 +1,16 @@
+extends baseEmail
+
+block content
+  h1 Your Request has been Declined.
+  h2 Try to contact the service provider to find out the reason for the decline.
+  table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+    tbody
+      tr
+        td(align='left')
+          table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+            tbody
+              tr
+                td
+                  //- a(href=`${price}`, target='_blank') #{price}
+  p Enjoy using our product!
+
