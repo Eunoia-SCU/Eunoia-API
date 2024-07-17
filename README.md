@@ -559,5 +559,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 This README provides a comprehensive guide for setting up, running, and testing the project, as well as detailed API documentation and project structure information.
-# Eunoia-API
-# Eunoia-API
+
+# Worked on this Project
+
+© [Ali Nour](https://github.com/alin00r) © [Mazen](https://github.com/mazenmohamedmahmoudatia666) © [Kareem](https://github.com/karemhamed)
